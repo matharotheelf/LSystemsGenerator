@@ -2,19 +2,26 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    lSystem.DefineRule('A', "AB");
-    lSystem.DefineRule('B', "A");
+    lSystem.DefineRule('F', "FF+[+F-F-F]-[-F+F+F]");
+    lSystem.GenerateSentence();
+    lSystem.GenerateSentence();
+    lSystem.GenerateSentence();
+    lSystem.GenerateSentence();
+    lSystem.GenerateSentence();
+    lSystem.GenerateSentence();
+    lSystem.GenerateSentence();
+    ofLog() << lSystem.getLastSentence()->sentence;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    lSystem.GenerateSentence();
-    ofLog() << lSystem.getLastSentence()->sentence;
+    ofTranslate(512, 768);
+    Turtle* turtle = new Turtle(lSystem.getLastSentence(), -3, 25);
+    turtle->Render();
 }
 
 //--------------------------------------------------------------

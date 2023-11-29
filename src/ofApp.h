@@ -4,6 +4,7 @@
 #include "LSystem.hpp"
 #include "Sentence.hpp"
 #include "Rule.hpp"
+#include "Turtle.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -25,6 +26,6 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h) override;
 		void dragEvent(ofDragInfo dragInfo) override;
 		void gotMessage(ofMessage msg) override;
-        LSystem lSystem = LSystem("A");
+        LSystem lSystem = LSystem("F");
 		
 };
