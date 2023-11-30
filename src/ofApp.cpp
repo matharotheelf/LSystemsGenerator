@@ -2,10 +2,11 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    configurationGui.setup();
-    configurationGui.add(lsystemGuiGroup.setup());
+    configurationGui.setup("Configuration");
+    configurationGui.add(generateLSystemButton.setup("Generate L-System"));
 
-    lsystemGuiGroup.add(lSystemLabel.setup("LSystem Settings", ""));
+    configurationGui.add(lsystemGuiGroup.setup("L-System Settings"));
+
     lsystemGuiGroup.add(presetLabel.setup("Preset", ""));
     lsystemGuiGroup.add(presetDropdown.setup("Preset"));
     presetDropdown.add("A preset");
@@ -22,45 +23,39 @@ void ofApp::setup(){
     lsystemGuiGroup.add(stochaticLabel.setup("Stochastic", ""));
     lsystemGuiGroup.add(stochasticToggle.setup(false));
     
-    configurationGui.add(rulesGuiGroup.setup());
+    configurationGui.add(rulesGuiGroup.setup("Rules"));
     
-    rulesGuiGroup.add(rulesLabel.setup("Rules" , ""));
-    rulesGuiGroup.add(firstRulelabel.setup("F", ""));
     rulesGuiGroup.add(firstRuleField.setup("F=>", "FF"));
-    
-    rulesGuiGroup.add(secondRulelabel.setup("X", ""));
     rulesGuiGroup.add(secondRuleField.setup("X=>", "XX[X]"));
-    
-    rulesGuiGroup.add(thirdRulelabel.setup("G", ""));
     rulesGuiGroup.add(thirdRuleField.setup("G=>", "GGG"));
-    
-    rulesGuiGroup.add(fourthRulelabel.setup("H", ""));
     rulesGuiGroup.add(fourthRuleField.setup("H=>", "HH"));
+    rulesGuiGroup.add(axiomlabel.setup("Axiom", ""));
+    rulesGuiGroup.add(axiomField.setup("Axiom", "F"));
     
-    configurationGui.add(visualGuiGroup.setup());
-    
-    visualGuiGroup.add(visualLabel.setup("Visual Settings", ""));
+    configurationGui.add(visualGuiGroup.setup("VIsual Settings"));
     
     visualGuiGroup.add(angleLabel.setup("Angle", ""));
     visualGuiGroup.add(angleField.setup(30.0));
     
-    visualGuiGroup.add(rulesLabel.setup("Rules" , ""));
-    
     visualGuiGroup.add(variablesLabel.setup("Variables", ""));
-    visualGuiGroup.add(firstVariablelabel.setup("F", ""));
-    visualGuiGroup.add(firstVariableLengthField.setup(100));
+    visualGuiGroup.add(firstVariableLabel.setup("F", ""));
+    visualGuiGroup.add(firstVariableLengthField.setup("Line Length", 100));
+    visualGuiGroup.add(firstVariableColourFieldLabel.setup("Line Colour", ""));
     visualGuiGroup.add(firstVariableColourField.setup(ofColor(0, 0, 0)));
     
-    visualGuiGroup.add(secondVariablelabel.setup("X", ""));
-    visualGuiGroup.add(secondVariableLengthField.setup(100));
-    visualGuiGroup.add(secondVariableColourField.setup(ofColor(0, 0, 0)));
+    visualGuiGroup.add(secondVariableLabel.setup("X", ""));
+    visualGuiGroup.add(secondVariableLengthField.setup("Line Length", 100));
+    visualGuiGroup.add(secondVariableColourFieldLabel.setup("Line Colour", ""));
+    visualGuiGroup.add(secondVariableColourField.setup( ofColor(0, 0, 0)));
     
-    visualGuiGroup.add(thirdVariablelabel.setup("G", ""));
-    visualGuiGroup.add(thirdVariableLengthField.setup(100));
+    visualGuiGroup.add(thirdVariableLabel.setup("G", ""));
+    visualGuiGroup.add(thirdVariableLengthField.setup("Line Length", 100));
+    visualGuiGroup.add(thirdVariableColourFieldLabel.setup("Line Colour", ""));
     visualGuiGroup.add(thirdVariableColourField.setup(ofColor(0, 0, 0)));
     
-    visualGuiGroup.add(fourthVariablelabel.setup("H", ""));
-    visualGuiGroup.add(fourthVariableLengthField.setup(100));
+    visualGuiGroup.add(fourthVariableLabel.setup("H", ""));
+    visualGuiGroup.add(fourthVariableLengthField.setup("Line Length", 100));
+    visualGuiGroup.add(fourthVariableColourFieldLabel.setup("Line Colour", ""));
     visualGuiGroup.add(fourthVariableColourField.setup(ofColor(0, 0, 0)));
 
     

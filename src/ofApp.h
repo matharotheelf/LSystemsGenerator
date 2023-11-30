@@ -31,9 +31,9 @@ class ofApp : public ofBaseApp{
         LSystem lSystem = LSystem("F");
 
         ofxPanel configurationGui;
+        ofxButton generateLSystemButton;
     
         ofxGuiGroup lsystemGuiGroup;
-        ofxLabel lSystemLabel;
         ofxLabel presetLabel;
         ofxDropdown_<string> presetDropdown;
         ofxLabel iterationsLabel;
@@ -42,32 +42,34 @@ class ofApp : public ofBaseApp{
         ofxToggle stochasticToggle;
     
         ofxGuiGroup rulesGuiGroup;
-        ofxLabel rulesLabel;
-        ofxLabel firstRulelabel;
         ofxTextField firstRuleField;
-        ofxLabel secondRulelabel;
         ofxTextField secondRuleField;
-        ofxLabel thirdRulelabel;
         ofxTextField thirdRuleField;
-        ofxLabel fourthRulelabel;
         ofxTextField fourthRuleField;
+        ofxLabel axiomlabel;
+        ofxTextField axiomField;
     
         ofxGuiGroup visualGuiGroup;
-        ofxLabel visualLabel;
         ofxLabel angleLabel;
-        ofxFloatField angleField;
+        ofxIntField angleField;
         
         ofxLabel variablesLabel;
-        ofxLabel firstVariablelabel;
+        ofxLabel firstVariableLabel;
         ofxIntField firstVariableLengthField;
+        ofxLabel firstVariableColourFieldLabel;
         ofxColorSlider firstVariableColourField;
-        ofxLabel secondVariablelabel;
+        ofxLabel secondVariableLabel;
         ofxIntField secondVariableLengthField;
+        ofxLabel secondVariableColourFieldLabel;
         ofxColorSlider secondVariableColourField;
-        ofxLabel thirdVariablelabel;
+        ofxLabel thirdVariableLabel;
         ofxIntField thirdVariableLengthField;
+        ofxLabel thirdVariableColourFieldLabel;
         ofxColorSlider thirdVariableColourField;
-        ofxLabel fourthVariablelabel;
+        ofxLabel fourthVariableLabel;
+        ofxLabel fourthVariableColourFieldLabel;
         ofxIntField fourthVariableLengthField;
         ofxColorSlider fourthVariableColourField;
+    
+        ofParameterGroup configurationGroup;
 };
