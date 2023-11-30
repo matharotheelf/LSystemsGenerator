@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
+#include "ofxDropdown.h"
 #include "LSystem.hpp"
 #include "Sentence.hpp"
 #include "Rule.hpp"
@@ -27,5 +29,45 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo) override;
 		void gotMessage(ofMessage msg) override;
         LSystem lSystem = LSystem("F");
-		
+
+        ofxPanel configurationGui;
+    
+        ofxGuiGroup lsystemGuiGroup;
+        ofxLabel lSystemLabel;
+        ofxLabel presetLabel;
+        ofxDropdown_<string> presetDropdown;
+        ofxLabel iterationsLabel;
+        ofxDropdown_<int> iterationsDropdown;
+        ofxLabel stochaticLabel;
+        ofxToggle stochasticToggle;
+    
+        ofxGuiGroup rulesGuiGroup;
+        ofxLabel rulesLabel;
+        ofxLabel firstRulelabel;
+        ofxTextField firstRuleField;
+        ofxLabel secondRulelabel;
+        ofxTextField secondRuleField;
+        ofxLabel thirdRulelabel;
+        ofxTextField thirdRuleField;
+        ofxLabel fourthRulelabel;
+        ofxTextField fourthRuleField;
+    
+        ofxGuiGroup visualGuiGroup;
+        ofxLabel visualLabel;
+        ofxLabel angleLabel;
+        ofxFloatField angleField;
+        
+        ofxLabel variablesLabel;
+        ofxLabel firstVariablelabel;
+        ofxIntField firstVariableLengthField;
+        ofxColorSlider firstVariableColourField;
+        ofxLabel secondVariablelabel;
+        ofxIntField secondVariableLengthField;
+        ofxColorSlider secondVariableColourField;
+        ofxLabel thirdVariablelabel;
+        ofxIntField thirdVariableLengthField;
+        ofxColorSlider thirdVariableColourField;
+        ofxLabel fourthVariablelabel;
+        ofxIntField fourthVariableLengthField;
+        ofxColorSlider fourthVariableColourField;
 };
