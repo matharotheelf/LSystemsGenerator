@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<Configuration>
+	<L-System_Settings>
+		<Preset>
+			<A_preset>0</A_preset>
+			<B_preset>0</B_preset>
+		</Preset>
+		<UnknownName>0</UnknownName>
+	</L-System_Settings>
+	<Rules>
+		<Axiom>F</Axiom>
+	</Rules>
+	<VIsual_Settings>
+		<UnknownName>0, 0, 0, 255</UnknownName>
+		<Line_Length>100</Line_Length>
+	</VIsual_Settings>
+</Configuration>

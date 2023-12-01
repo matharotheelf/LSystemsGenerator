@@ -18,10 +18,11 @@ class Sentence;
 
 class LSystem {
     public:
-        LSystem(string cAxiom);
+        LSystem(string cAxiom, int cMaxIterations);
         Sentence * axiom;
         vector<Rule *> rules;
         vector<Sentence *> sentences;
+        int maxIterations;
         void GenerateSentence();
         void DefineRule(char input, string output);
         Sentence * getLastSentence();

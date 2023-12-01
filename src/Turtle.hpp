@@ -9,16 +9,19 @@
 #define Turtle_hpp
 
 #include <stdio.h>
+#include "ofMain.h"
 
 #endif /* Turtle_hpp */
 
 class Sentence;
+class RenderConfig;
 
 class Turtle  {
     public:
-        Turtle(Sentence * sentence, float length, float angle);
+        Turtle(Sentence * sentence, float angle, map<char, RenderConfig *> variableRenderConfig);
+        map<char, RenderConfig *> variableRenderConfig;
         Sentence * sentence;
-        float length;
         float angle;
         void Render();
+    void SetSentence(Sentence * sentence);
 };

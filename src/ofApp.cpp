@@ -3,7 +3,9 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     configurationGui.setup("Configuration");
+    
     configurationGui.add(generateLSystemButton.setup("Generate L-System"));
+    generateLSystemButton.addListener(this, &ofApp::generateLSystemButtonPressed);
 
     configurationGui.add(lsystemGuiGroup.setup("L-System Settings"));
 
@@ -13,12 +15,9 @@ void ofApp::setup(){
     presetDropdown.add("B preset");
     
     lsystemGuiGroup.add(iterationsLabel.setup("Iterations", ""));
-    lsystemGuiGroup.add(iterationsDropdown.setup("Iterations"));
-    iterationsDropdown.add(1);
-    iterationsDropdown.add(2);
-    iterationsDropdown.add(3);
-    iterationsDropdown.add(4);
-    iterationsDropdown.add(5);
+    lsystemGuiGroup.add(iterationsField.setup(5));
+    iterationsField.setMax(10);
+    iterationsField.setMin(1);
 
     lsystemGuiGroup.add(stochaticLabel.setup("Stochastic", ""));
     lsystemGuiGroup.add(stochasticToggle.setup(false));
@@ -35,39 +34,28 @@ void ofApp::setup(){
     configurationGui.add(visualGuiGroup.setup("VIsual Settings"));
     
     visualGuiGroup.add(angleLabel.setup("Angle", ""));
-    visualGuiGroup.add(angleField.setup(30.0));
+    visualGuiGroup.add(angleField.setup(30));
     
     visualGuiGroup.add(variablesLabel.setup("Variables", ""));
     visualGuiGroup.add(firstVariableLabel.setup("F", ""));
     visualGuiGroup.add(firstVariableLengthField.setup("Line Length", 100));
     visualGuiGroup.add(firstVariableColourFieldLabel.setup("Line Colour", ""));
-    visualGuiGroup.add(firstVariableColourField.setup(ofColor(0, 0, 0)));
+    visualGuiGroup.add(firstVariableColourField.set(ofColor(0, 0, 0)));
     
     visualGuiGroup.add(secondVariableLabel.setup("X", ""));
     visualGuiGroup.add(secondVariableLengthField.setup("Line Length", 100));
     visualGuiGroup.add(secondVariableColourFieldLabel.setup("Line Colour", ""));
-    visualGuiGroup.add(secondVariableColourField.setup( ofColor(0, 0, 0)));
+    visualGuiGroup.add(secondVariableColourField.set(ofColor(0, 0, 0)));
     
     visualGuiGroup.add(thirdVariableLabel.setup("G", ""));
     visualGuiGroup.add(thirdVariableLengthField.setup("Line Length", 100));
     visualGuiGroup.add(thirdVariableColourFieldLabel.setup("Line Colour", ""));
-    visualGuiGroup.add(thirdVariableColourField.setup(ofColor(0, 0, 0)));
+    visualGuiGroup.add(thirdVariableColourField.set(ofColor(0, 0, 0)));
     
     visualGuiGroup.add(fourthVariableLabel.setup("H", ""));
     visualGuiGroup.add(fourthVariableLengthField.setup("Line Length", 100));
     visualGuiGroup.add(fourthVariableColourFieldLabel.setup("Line Colour", ""));
-    visualGuiGroup.add(fourthVariableColourField.setup(ofColor(0, 0, 0)));
-
-    
-//    lSystem.DefineRule('F', "FF+[+F-F-F]-[-F+F+F]");
-//    lSystem.GenerateSentence();
-//    lSystem.GenerateSentence();
-//    lSystem.GenerateSentence();
-//    lSystem.GenerateSentence();
-//    lSystem.GenerateSentence();
-//    lSystem.GenerateSentence();
-//    lSystem.GenerateSentence();
-//    ofLog() << lSystem.getLastSentence()->sentence;
+    visualGuiGroup.add(fourthVariableColourField.set(ofColor(0, 0, 0)));
 }
 
 //--------------------------------------------------------------
@@ -76,10 +64,63 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    if(turtle != NULL) {
+        turtle->Render();
+    }
+    
     configurationGui.draw();
-//    ofTranslate(512, 768);
-//    Turtle* turtle = new Turtle(lSystem.getLastSentence(), -3, 25);
-//    turtle->Render();
+}
+
+void ofApp::generateLSystemButtonPressed(){
+    configurationGui.minimize();
+    
+    string axiom = axiomField.getParameter().cast<string>();
+    float angle = angleField.getParameter().cast<int>();
+    int iterations = iterationsField.getParameter().cast<int>();
+    
+    lSystem = new LSystem(axiom, iterations);
+    
+    string firstRule = firstRuleField.getParameter().cast<string>();
+    string secondRule = secondRuleField.getParameter().cast<string>();
+    string thirdRule = thirdRuleField.getParameter().cast<string>();
+    string fourthRule = fourthRuleField.getParameter().cast<string>();
+    
+    if(!firstRule.empty()){
+        lSystem->DefineRule('F', firstRule);
+    }
+    
+    if(!secondRule.empty()){
+        lSystem->DefineRule('X', secondRule);
+    }
+    
+    if(!thirdRule.empty()){
+        lSystem->DefineRule('G', thirdRule);
+    }
+    
+    if(!fourthRule.empty()){
+        lSystem->DefineRule('H', fourthRule);
+    }
+    
+    int firstVariableLength = firstVariableLengthField.getParameter().cast<int>();
+    int secondVariableLength = secondVariableLengthField.getParameter().cast<int>();
+    int thirdVariableLength = thirdVariableLengthField.getParameter().cast<int>();
+    int fourthVariableLength = fourthVariableLengthField.getParameter().cast<int>();
+    
+    ofColor firstVariableColour = firstVariableColourField.cast<ofColor>();
+    ofColor secondVariableColour = secondVariableColourField.cast<ofColor>();
+    ofColor thirdVariableColour = firstVariableColourField.cast<ofColor>();
+    ofColor fourthVariableColour = secondVariableColourField.cast<ofColor>();
+    
+    map<char, RenderConfig *> renderConfigs;
+    
+    renderConfigs['F'] = new RenderConfig(-firstVariableLength, firstVariableColour);
+    renderConfigs['X'] = new RenderConfig(-secondVariableLength, secondVariableColour);
+    renderConfigs['G'] = new RenderConfig(-thirdVariableLength, thirdVariableColour);
+    renderConfigs['H'] = new RenderConfig(-fourthVariableLength, fourthVariableColour);
+
+    lSystem->GenerateSentence();
+
+    turtle = new Turtle(lSystem->getLastSentence(), angle, renderConfigs);
 }
 
 //--------------------------------------------------------------
@@ -89,7 +130,10 @@ void ofApp::exit(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    if(key == ' ' && turtle != NULL && lSystem != NULL){
+        lSystem->GenerateSentence();
+        turtle->SetSentence(lSystem->getLastSentence());
+    }
 }
 
 //--------------------------------------------------------------
@@ -109,7 +153,6 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
 }
 
 //--------------------------------------------------------------

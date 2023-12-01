@@ -7,20 +7,25 @@
 
 #include "Turtle.hpp"
 #include "Sentence.hpp"
+#include "RenderConfig.hpp"
 
-Turtle::Turtle(Sentence * cSentence, float cLength, float cAngle){
+Turtle::Turtle(Sentence * cSentence, float cAngle, map<char, RenderConfig *> cVariableRenderConfig){
     sentence = cSentence;
-    length = cLength;
     angle = cAngle;
+    variableRenderConfig = cVariableRenderConfig;
 }
 
 void Turtle::Render(){
+    ofPushMatrix();
+    ofTranslate(512, 768);
     for(char character : sentence->sentence) {
-        if (character == 'F') {
-            ofLine(0,0,0,length);
-            ofTranslate(0,length);
-        } else if (character == 'G') {
-            ofTranslate(0,length);
+        map<char, RenderConfig *>::iterator matchingConfig = variableRenderConfig.find(character);
+        
+        if(matchingConfig != variableRenderConfig.end()) {
+            RenderConfig * config = matchingConfig->second;
+            ofSetColor(config->lineColour);
+            ofLine(0,0,0,config->lineLength);
+            ofTranslate(0,config->lineLength);
         } else if (character == '+') {
             ofRotate(angle);
         } else if (character == '-') {
@@ -31,4 +36,9 @@ void Turtle::Render(){
             ofPopMatrix();
         }
     }
+    ofPopMatrix();
+}
+
+void Turtle::SetSentence(Sentence * cSentence) {
+    sentence = cSentence;
 }

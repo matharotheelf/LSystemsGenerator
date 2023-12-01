@@ -9,11 +9,14 @@
 #include "Sentence.hpp"
 #include "Rule.hpp"
 
-LSystem::LSystem(string cAxiom) {
+LSystem::LSystem(string cAxiom, int cmaxIterations) {
     axiom = new Sentence(cAxiom);
+    maxIterations = cmaxIterations;
 }
 
 void LSystem::GenerateSentence(){
+    if(sentences.size() == maxIterations) return;
+    
     Sentence * lastSentence = getLastSentence();
     Sentence * newSentence = lastSentence->ApplyRules(rules);
     

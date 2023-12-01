@@ -7,6 +7,7 @@
 #include "Sentence.hpp"
 #include "Rule.hpp"
 #include "Turtle.hpp"
+#include "RenderConfig.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -28,7 +29,11 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h) override;
 		void dragEvent(ofDragInfo dragInfo) override;
 		void gotMessage(ofMessage msg) override;
-        LSystem lSystem = LSystem("F");
+    
+        void generateLSystemButtonPressed();
+
+        LSystem* lSystem;
+        Turtle* turtle;
 
         ofxPanel configurationGui;
         ofxButton generateLSystemButton;
@@ -37,7 +42,7 @@ class ofApp : public ofBaseApp{
         ofxLabel presetLabel;
         ofxDropdown_<string> presetDropdown;
         ofxLabel iterationsLabel;
-        ofxDropdown_<int> iterationsDropdown;
+        ofxIntField iterationsField;
         ofxLabel stochaticLabel;
         ofxToggle stochasticToggle;
     
@@ -57,19 +62,19 @@ class ofApp : public ofBaseApp{
         ofxLabel firstVariableLabel;
         ofxIntField firstVariableLengthField;
         ofxLabel firstVariableColourFieldLabel;
-        ofxColorSlider firstVariableColourField;
+        ofParameter<ofColor> firstVariableColourField;
         ofxLabel secondVariableLabel;
         ofxIntField secondVariableLengthField;
         ofxLabel secondVariableColourFieldLabel;
-        ofxColorSlider secondVariableColourField;
+        ofParameter<ofColor> secondVariableColourField;
         ofxLabel thirdVariableLabel;
         ofxIntField thirdVariableLengthField;
         ofxLabel thirdVariableColourFieldLabel;
-        ofxColorSlider thirdVariableColourField;
+        ofParameter<ofColor> thirdVariableColourField;
         ofxLabel fourthVariableLabel;
-        ofxLabel fourthVariableColourFieldLabel;
         ofxIntField fourthVariableLengthField;
-        ofxColorSlider fourthVariableColourField;
+        ofxLabel fourthVariableColourFieldLabel;
+        ofParameter<ofColor> fourthVariableColourField;
     
         ofParameterGroup configurationGroup;
 };
