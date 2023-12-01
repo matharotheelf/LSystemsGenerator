@@ -22,6 +22,6 @@ class Turtle  {
         map<char, RenderConfig *> variableRenderConfig;
         Sentence * sentence;
         float angle;
-        void Render();
+        void Render(float scaleFactor, float lineWeight);
     void SetSentence(Sentence * sentence);
 };

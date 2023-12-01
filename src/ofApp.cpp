@@ -65,7 +65,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     if(turtle != NULL) {
-        turtle->Render();
+        turtle->Render(scaleFactor, lineWeight);
     }
     
     configurationGui.draw();
@@ -133,6 +133,18 @@ void ofApp::keyPressed(int key){
     if(key == ' ' && turtle != NULL && lSystem != NULL){
         lSystem->GenerateSentence();
         turtle->SetSentence(lSystem->getLastSentence());
+    }
+    
+    if(key == '+'){
+        scaleFactor = scaleFactor*1.5;
+    } else if(key == '-') {
+        scaleFactor = scaleFactor/1.5;
+    }
+    
+    if(key == ']'){
+        lineWeight = lineWeight*1.2;
+    } else if(key == '[') {
+        lineWeight = lineWeight/1.2;
     }
 }
 

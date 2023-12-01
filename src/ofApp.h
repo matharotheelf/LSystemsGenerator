@@ -77,4 +77,7 @@ class ofApp : public ofBaseApp{
         ofParameter<ofColor> fourthVariableColourField;
     
         ofParameterGroup configurationGroup;
+    
+        float scaleFactor = 1;
+        float lineWeight = 1;
 };

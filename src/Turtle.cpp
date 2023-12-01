@@ -15,16 +15,18 @@ Turtle::Turtle(Sentence * cSentence, float cAngle, map<char, RenderConfig *> cVa
     variableRenderConfig = cVariableRenderConfig;
 }
 
-void Turtle::Render(){
+void Turtle::Render(float scaleFactor, float lineWeight){
     ofPushMatrix();
     ofTranslate(512, 768);
+    ofScale(scaleFactor);
+    ofSetLineWidth(lineWeight);
     for(char character : sentence->sentence) {
         map<char, RenderConfig *>::iterator matchingConfig = variableRenderConfig.find(character);
         
         if(matchingConfig != variableRenderConfig.end()) {
             RenderConfig * config = matchingConfig->second;
             ofSetColor(config->lineColour);
-            ofLine(0,0,0,config->lineLength);
+            ofDrawLine(0,0,0,config->lineLength);
             ofTranslate(0,config->lineLength);
         } else if (character == '+') {
             ofRotate(angle);
