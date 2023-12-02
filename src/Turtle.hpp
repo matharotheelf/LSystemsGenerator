@@ -23,5 +23,5 @@ class Turtle  {
         Sentence * sentence;
         float angle;
         void Render(float scaleFactor, float lineWeight);
-    void SetSentence(Sentence * sentence);
+        void SetSentence(Sentence * sentence);
 };
