@@ -43,7 +43,7 @@ void ofApp::setup(){
     lsystemGuiGroup.add(presetButton10.setup(presets[9]));
     presetButton10.addListener(this, &ofApp::SelectPreset10);
     
-    lsystemGuiGroup.add(iterationsLabel.setup("Iterations", ""));
+    lsystemGuiGroup.add(iterationsLabel.setup("Max Iterations", ""));
     lsystemGuiGroup.add(iterationsField.setup(5));
     iterationsField.setMax(15);
     iterationsField.setMin(1);
@@ -52,8 +52,8 @@ void ofApp::setup(){
     lsystemGuiGroup.add(stochasticToggle.setup(false));
     
     configurationGui.add(rulesGuiGroup.setup("Rules"));
-    
-    configurationGui.add(visualGuiGroup.setup("VIsual Settings"));
+
+    configurationGui.add(visualGuiGroup.setup("Visual Settings"));
     
     CreateSoundGui();
     
@@ -403,7 +403,7 @@ void ofApp::CreateSoundGui(){
     soundVolume.setMax(1);
     soundVolume.setMin(0);
 
-    soundGui.add(soundDuration.set("speed", 0.5));
+    soundGui.add(soundDuration.set("note length", 0.5));
     soundDuration.setMax(1);
     soundDuration.setMin(0);
     
@@ -431,7 +431,7 @@ void ofApp::audioOut( float * output, int bufferSize, int nChannels ) {
         currentPlayerPhase += 0.05;
      }
     
-    if((currentPlayerPhase/soundDuration) > (10000 * note->duration)) {
+    if((currentPlayerPhase/soundDuration) > (1000 * note->duration)) {
         currentPlayerPhase = 0;
         currentPlayerNote++;
     }
