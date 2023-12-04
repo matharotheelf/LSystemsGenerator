@@ -13,6 +13,7 @@
 
 #endif /* SonicTurtle_hpp */
 
+// Class to store parameters related to a musical note
 class Note  {
     public:
         Note(int duration, int pitch);

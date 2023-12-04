@@ -13,6 +13,7 @@
 
 #endif /* Rule_hpp */
 
+// Store the inputs and outputs of a rule
 class Rule  {
     public:
         Rule(char cInput, string cOutput);

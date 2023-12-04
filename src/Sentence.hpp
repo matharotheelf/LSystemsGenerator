@@ -15,6 +15,7 @@
 
 class Rule;
 
+// Class to store a sentence and generate next sentence from it
 class Sentence  {
     public:
         Sentence(string cString);

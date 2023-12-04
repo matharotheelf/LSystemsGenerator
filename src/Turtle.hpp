@@ -16,6 +16,7 @@
 class Sentence;
 class RenderConfig;
 
+// Class to visually render a given sentence
 class Turtle  {
     public:
         Turtle(Sentence * sentence, float angle, map<char, RenderConfig *> variableRenderConfig);

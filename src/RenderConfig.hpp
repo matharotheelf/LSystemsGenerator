@@ -13,6 +13,7 @@
 
 #endif /* RenderConfig_hpp */
 
+// Class to store the visual rendering configuration of a given variable
 class RenderConfig {
     public:
         RenderConfig(float lineLength, ofColor lineColour);

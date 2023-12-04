@@ -16,6 +16,7 @@
 class Rule;
 class Sentence;
 
+// Parent class for LSystem parameter storage and generation
 class LSystem {
     public:
         LSystem(string cAxiom, int cMaxIterations);

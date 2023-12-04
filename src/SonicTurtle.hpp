@@ -16,6 +16,7 @@
 class Sentence;
 class Note;
 
+// Class to produce a musical score from a sentence
 class SonicTurtle  {
     public:
         SonicTurtle(Sentence * sentence);
