@@ -18,6 +18,7 @@ class ofApp : public ofBaseApp{
 		void setup() override;
 		void draw() override;
 		void keyPressed(int key) override;
+        void audioOut( float * output, int bufferSize, int nChannels ) override;
         
         void generateLSystemButtonPressed();
         void DefinePresetsGui();
@@ -55,7 +56,6 @@ class ofApp : public ofBaseApp{
         void CreateSoundGui();
         void PlaySound();
         void AudioSetup();
-        void audioOut( float * output, int bufferSize, int nChannels );
     
         ofxPanel soundGui;
         ofParameter<float> soundVolume;

@@ -19,9 +19,10 @@ class RenderConfig;
 class Turtle  {
     public:
         Turtle(Sentence * sentence, float angle, map<char, RenderConfig *> variableRenderConfig);
+        void Render(float scaleFactor, float lineWeight);
+        void SetSentence(Sentence * sentence);
+    private:
         map<char, RenderConfig *> variableRenderConfig;
         Sentence * sentence;
         float angle;
-        void Render(float scaleFactor, float lineWeight);
-        void SetSentence(Sentence * sentence);
 };

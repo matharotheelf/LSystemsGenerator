@@ -19,7 +19,8 @@ class Note;
 class SonicTurtle  {
     public:
         SonicTurtle(Sentence * sentence);
-        Sentence * sentence;
         vector<Note *> score;
         void GenerateScore();
+    private:
+        Sentence * sentence;
 };
