@@ -1,20 +1,24 @@
+<root>
 <edgeRewriting1>
   <rules>
     <F>F[+F]F[-F]F</F>
   </rules>
   <axiom>F</axiom>
+  <angle>25.7</angle>
 </edgeRewriting1>
 <edgeRewriting2>
   <rules>
     <F>F[+F]F[-F][F]</F>
   </rules>
   <axiom>F</axiom>
+  <angle>20</angle>
 </edgeRewriting2>
 <edgeRewriting3>
   <rules>
     <F>FF-[-F+F+F]+[+F-F-F]</F>
   </rules>
   <axiom>F</axiom>
+  <angle>22.5</angle>
 </edgeRewriting3>
 <nodeRewriting1>
   <rules>
@@ -22,6 +26,7 @@
     <F>FF</F>
   </rules>
   <axiom>X</axiom>
+  <angle>20</angle>
 </nodeRewriting1>
 <nodeRewriting2>
   <rules>
@@ -29,6 +34,7 @@
     <F>FF</F>
   </rules>
   <axiom>X</axiom>
+  <angle>25.7</angle>
 </nodeRewriting2>
 <nodeRewriting3>
   <rules>
@@ -36,6 +42,7 @@
     <F>FF</F>
   </rules>
   <axiom>X</axiom>
+  <angle>22.5</angle>
 </nodeRewriting3>
 <bush>
   <rules>
@@ -44,6 +51,7 @@
     <F>F</F>
   </rules>
   <axiom>G</axiom>
+  <angle>25.7</angle>
 </bush>
 <quadraticGosper>
   <rules>
@@ -52,6 +60,7 @@
     <F>F</F>
   </rules>
   <axiom>-GF</axiom>
+  <angle>90</angle>
 </quadraticGosper>
 <weed>
   <rules>
@@ -60,6 +69,7 @@
     <G>-FX</G>
   </rules>
   <axiom>F</axiom>
+  <angle>22.5</angle>
 </weed>
 <peanoCurve>
   <rules>
@@ -68,4 +78,14 @@
     <F>F</F>
   </rules>
   <axiom>X</axiom>
+  <angle>90</angle>
 </peanoCurve>
+<quadraticSnowflake>
+  <rules>
+  <F>F-F+F+F-F</F>
+  </rules>
+  <axiom>F</axiom>
+  <angle>90</angle>
+</peanoCurve>
+
+</root>

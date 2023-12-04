@@ -16,32 +16,21 @@ class ofApp : public ofBaseApp{
 
 	public:
 		void setup() override;
-		void update() override;
 		void draw() override;
-		void exit() override;
-
 		void keyPressed(int key) override;
-		void keyReleased(int key) override;
-		void mouseMoved(int x, int y ) override;
-		void mouseDragged(int x, int y, int button) override;
-		void mousePressed(int x, int y, int button) override;
-		void mouseReleased(int x, int y, int button) override;
-		void mouseScrolled(int x, int y, float scrollX, float scrollY) override;
-		void mouseEntered(int x, int y) override;
-		void mouseExited(int x, int y) override;
-		void windowResized(int w, int h) override;
-		void dragEvent(ofDragInfo dragInfo) override;
-		void gotMessage(ofMessage msg) override;
-    
+        
         void generateLSystemButtonPressed();
-        void loadPresetConfiguration(string configurationName);
+        void DefinePresetsGui();
+        void LoadPresetConfiguration(string configurationName);
         void FRuleFieldAddition(string rule);
         void XRuleFieldAddition(string rule);
         void GRuleFieldAddition(string rule);
         void HRuleFieldAddition(string rule);
-        void RenderRulesFields();
-        void RenderVisualFields();
+        void RenderRulesFields(string axiom);
+        void RenderVisualFields(int angle);
+        void RenderConstantsKey();
         void SetConfigAlphabet();
+        void RenderInteractionKey();
         void FVisualFieldsAddition();
         void XVisualFieldsAddition();
         void GVisualFieldsAddition();
@@ -61,6 +50,7 @@ class ofApp : public ofBaseApp{
         void SelectPreset8();
         void SelectPreset9();
         void SelectPreset10();
+        void SelectPreset11();
     
         void CreateSoundGui();
         void PlaySound();
@@ -75,6 +65,8 @@ class ofApp : public ofBaseApp{
         int currentPlayerNote = 0;
         vector<Note *> currentScore;
         const float pitchRatio = 1.06;
+        const float phaseIncrement = 0.05;
+        const float audioSpeedConstant = 1000;
 
         LSystem* lSystem;
         Turtle* turtle;
@@ -96,11 +88,10 @@ class ofApp : public ofBaseApp{
         ofxButton presetButton8;
         ofxButton presetButton9;
         ofxButton presetButton10;
+        ofxButton presetButton11;
 
         ofxLabel iterationsLabel;
         ofxIntField iterationsField;
-        ofxLabel stochaticLabel;
-        ofxToggle stochasticToggle;
     
         ofxGuiGroup rulesGuiGroup;
         ofxTextField FRuleField;
@@ -132,6 +123,16 @@ class ofApp : public ofBaseApp{
         ofxLabel HVariableColourFieldLabel;
         ofParameter<ofColor> HVariableColourField;
     
+        ofxGuiGroup ConstantsKey;
+        ofxLabel ConstantLabel1;
+        ofxLabel ConstantLabel2;
+        ofxLabel ConstantLabel3;
+        ofxLabel ConstantLabel4;
+    
+        ofxGuiGroup InteractionKey;
+        ofxLabel ZoomLabel;
+        ofxLabel BranchWidthLabel;
+
         ofParameterGroup configurationGroup;
     
         float scaleFactor = 1;
@@ -140,14 +141,14 @@ class ofApp : public ofBaseApp{
         ofxXmlSettings presetSettings;
         vector<char> configAlphabet;
         const char possibleAlphabet[4] = {'F', 'X', 'G', 'H'};
-        string configAxiom;
     
         map<char, RenderConfig *> renderConfigs;
     
-        const string presets[10] = {
+        const string presets[11] = {
             "edgeRewriting1", "edgeRewriting2", "edgeRewriting3",
             "nodeRewriting1", "nodeRewriting2", "nodeRewriting3",
-            "quadraticGosper", "weed", "bush", "peanoCurve"
+            "quadraticGosper", "weed", "bush", "peanoCurve",
+            "quadraticSnowflake"
         };
     
         const string defaultPreset = "edgeRewriting1";

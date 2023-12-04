@@ -14,36 +14,33 @@ SonicTurtle::SonicTurtle(Sentence * cSentence){
     sentence = cSentence;
 }
 
-void SonicTurtle::Play(float * output, int bufferSize, int nChannels) {
-//    float volumeValue = volume->cast<float>();
-//
-//    for(int i = 0; i < bufferSize * nChannels; i += 2) {
-//      float sample = sin(currentPlayerPhase); // generating a sine wave sample
-//      output[i] = sample; // writing to the left channel
-//      output[i+1] = sample; // writing to the right channel
-//      currentPlayerPhase += 0.05;
-//    }
-}
-
 void SonicTurtle::GenerateScore() {
     score.clear();
 
+    // Stores pitch and durations for notes
     int pitch = 0;
     int noteDuration = 0;
+    
+    // Stores the saved values of pitch and duration for when to return to previous values
     vector<int> poppedPitches;
     vector<int> poppedDurations;
     
     for(char character : sentence->sentence) {
+        // F increases note length
         if (character == 'F') {
             noteDuration++;
+        // increment pitch
         } else if (character == '+') {
             pitch++;
+        // decrement pitch
         } else if (character == '-') {
             pitch--;
+        // Store current pitch and duration and return duration to 0
         } else if (character == '[') {
             poppedPitches.push_back(pitch);
             poppedDurations.push_back(noteDuration);
             noteDuration = 0;
+        // Save the note and return to saved pitch value
         } else if (character == ']') {
             Note* newNote = new Note(pitch, noteDuration);
             score.push_back(newNote);

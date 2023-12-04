@@ -21,6 +21,5 @@ class SonicTurtle  {
         SonicTurtle(Sentence * sentence);
         Sentence * sentence;
         vector<Note *> score;
-        void Play(float * output, int bufferSize, int nChannels);
         void GenerateScore();
 };
