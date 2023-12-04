@@ -370,6 +370,7 @@ void ofApp::RenderInteractionKey(){
     // Key which shows hotkeys
     soundGui.add(ZoomLabel.setup("+ -", "Zoom in/out"));
     soundGui.add(BranchWidthLabel.setup("[ ]", "Vary branch width"));
+    soundGui.add(iterateLabel.setup("SPACE", "Perform iteration"));
 }
 
 void ofApp::DefinePresetsGui(){

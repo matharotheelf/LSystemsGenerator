@@ -132,6 +132,7 @@ class ofApp : public ofBaseApp{
         ofxGuiGroup InteractionKey;
         ofxLabel ZoomLabel;
         ofxLabel BranchWidthLabel;
+        ofxLabel iterateLabel;
 
         ofParameterGroup configurationGroup;
     
